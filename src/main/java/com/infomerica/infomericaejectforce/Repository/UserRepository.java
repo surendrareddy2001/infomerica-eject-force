@@ -11,6 +11,6 @@ public interface UserRepository extends JpaRepository<UserDAO, String> {
 
     @Transactional
     @Modifying
-    @Query(value = "INSERT INTO USERDAO (USERNAME, PASSWORD, FULLNAME, PHONENUMBER, EMAIL) VALUES (?1, ?2, ?3, ?4, ?5)", nativeQuery = true)
+    @Query(value = "INSERT INTO USER_INFO (USERNAME, PASSWORD, FULLNAME, PHONENUMBER, EMAIL) VALUES (?1, ?2, ?3, ?4, ?5)", nativeQuery = true)
     int insertUserDetails(String username, String password, String fullname, Long phoneNumber, String email);
 }

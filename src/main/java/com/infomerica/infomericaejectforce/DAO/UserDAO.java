@@ -1,33 +1,49 @@
 package com.infomerica.infomericaejectforce.DAO;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "USER_INFO")
 public class UserDAO {
 	@Id
-	private String username;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "USER_ID")
+    private Long userId;
+	@Column(name = "USERNAME")
+	private String userName;
+	@Column(name = "PASSWORD")
 	private String password;
-	private String fullname;
+	@Column(name = "FULLNAME")
+    private String fullName;
+	@Column(name = "PHONENUMBER")
 	private long phonenumber;
+	@Column(name = "EMAIL")
 	private String email;
 	
-	public UserDAO( String username,String password, String fullname, long phonenumber, String email) {
+	public UserDAO() {
 		super();
-		this.username = username;
+	}
+	public UserDAO( String username,String password, String fullName, long phonenumber, String email) {
+		super();
+		this.userName = username;
 		this.password = password;
-		this.fullname = fullname;
+		this.fullName = fullName;
 		this.phonenumber = phonenumber;
 		this.email = email;
 	}
 	public String getUsername() {
-		return username;
+		return userName;
 	}
 	public String getPassword() {
 		return password;
 	}
 	public String getFullname() {
-		return fullname;
+		return fullName;
 	}
 	public long getPhonenumber() {
 		return phonenumber;
@@ -36,13 +52,13 @@ public class UserDAO {
 		return email;
 	}
 	public void setUsername(String username) {
-		this.username = username;
+		this.userName = username;
 	}
 	public void setPassword(String password) {
 		this.password = password;
 	}
 	public void setFullname(String fullname) {
-		this.fullname = fullname;
+		this.fullName = fullname;
 	}
 	public void setPhonenumber(long phonenumber) {
 		this.phonenumber = phonenumber;
@@ -52,7 +68,7 @@ public class UserDAO {
 	}
 	@Override
 	public String toString() {
-		return "UserDAO [username=" + username + ", password=" + password + ", fullname=" + fullname
+		return "UserDAO [username=" + userName + ", password=" + password + ", fullname=" + fullName
 				+ ", phonenumber=" + phonenumber + ", email=" + email + "]";
 	}
 

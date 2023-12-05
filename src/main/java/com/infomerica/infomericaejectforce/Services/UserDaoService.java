@@ -24,9 +24,9 @@ public class UserDaoService {
 
 	public User saveUserDetails(UserDAO obj) {
 
-		String username = obj.getUsername();
+		String userName = obj.getUsername();
 		String password = obj.getPassword();
-		String fullname = obj.getFullname();
+		String fullName = obj.getFullname();
 		long phoneNumber = obj.getPhonenumber();
 		String email = obj.getEmail();
 		logger.info("Email used for registration" + email);
@@ -36,10 +36,10 @@ public class UserDaoService {
 
 		logger.info("Entered into saveUserDetails :{} ", LocalDateTime.now());
 
-		if (!isValidUserName(username)) {
-			errormessage = "UserName should be less than 30 charecters";
-			flag = false;
-		}
+//		if (!isValidUserName(username)) {
+//			errormessage = "UserName should be less than 30 charecters";
+//			flag = false;
+//		}
 
 		if (!isValidPassword(password)) {
 			errormessage = "Password must contain 4 digits and 2 special charecters";
@@ -59,9 +59,10 @@ public class UserDaoService {
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		String encryptedPassword = passwordEncoder.encode(password);
 
-		if (flag)
-			status = userRepository.insertUserDetails(username, encryptedPassword, fullname, phoneNumber, email);
-
+		if (!(userName==null))
+			status = userRepository.insertUserDetails(userName, encryptedPassword, fullName, phoneNumber, email);
+		else
+			status = userRepository.insertUserDetails("gfzdh", encryptedPassword, fullName, phoneNumber, email);
 		User registrationResponse = new User();
 
 		if (status == 1) {
@@ -84,7 +85,7 @@ public class UserDaoService {
 
 	public boolean isValidPassword(String password) {
 
-		return Pattern.matches("[0-9]{4}[!@#$%^&*]{2}", password);
+		return true;
 	}
 
 	public static boolean isValidPhoneNumber(long phoneNumber) {
@@ -93,7 +94,11 @@ public class UserDaoService {
 	}
 
 	public static boolean isValidUserName(String userName) {
+		 if (userName != null && userName.length() > 0) {
 		return userName.length() <= 30;
+		 }
+		  throw new IllegalArgumentException("Invalid userName: " + userName);
+		
 	}
 
 	public static boolean isValidEmailFormat(String email) {

@@ -25,7 +25,7 @@ public class UserController {
 	static Logger logger = LoggerFactory.getLogger(UserController.class);
 	
 	
-	@GetMapping("/registration")
+	@GetMapping("/")
 	public String getUserRegistration() {
 		return "registration";
 	}
