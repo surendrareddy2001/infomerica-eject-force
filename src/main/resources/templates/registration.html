@@ -285,8 +285,8 @@
       <input type="text" name="email" id="email" placeholder="Email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" title="Enter a valid email address">
       <div class="validation-message" id="emailValidationMessage"></div>
 
-      <label id="icon" for="userName"><i class="fa fa-user icon"></i></label>
-     <input type="text" name="userName" id="userName" placeholder="User Name" pattern="^[a-zA-Z][a-zA-Z0-9]*$" maxlength="30" title="Enter a valid username">
+      <label id="icon" for="username"><i class="fa fa-user icon"></i></label>
+     <input type="text" name="username" id="username" placeholder="User Name" >
 
       <div class="validation-message" id="nameValidationMessage"></div>
 
@@ -298,8 +298,8 @@
       <input type="password" name="password" id="password" placeholder="Password" pattern="^(?=.*\d)(?=.*[!@#$%^&*])[0-9a-zA-Z!@#$%^&*]{4,}$" title="Enter a valid password" required>
       <div class="validation-message" id="passwordValidationMessage"></div>
 
-      <label id="icon" for="fullName"><i class="fa fa-user icon"></i></label>
-      <input type="text" name="fullName" id="fullName" placeholder="Full Name" required>
+      <label id="icon" for="fullname"><i class="fa fa-user icon"></i></label>
+      <input type="text" name="fullname" id="fullname" placeholder="Full Name" required>
       <div class="validation-message" id="fullNameValidationMessage"></div>
 
        <button type="submit" class="button" onclick="validateForm()">Register</button><br><br>
@@ -312,10 +312,10 @@
     function validateForm() {
       var form = document.getElementById("registrationForm");
       var email = form.elements["email"].value;
-      var name = form.elements["userName"].value;
+      var name = form.elements["username"].value;
       var telephone = form.elements["telephone"].value;
       var password = form.elements["password"].value;
-      var fullName = form.elements["fullName"].value;
+      var fullName = form.elements["fullname"].value;
 
       if (!email.match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/)) {
         displayValidationMessage("emailValidationMessage", "Please enter a valid email address");

@@ -1,6 +1,7 @@
 package com.infomerica.infomericaejectforce.Services;
 
 import java.time.LocalDateTime;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.slf4j.Logger;
@@ -29,17 +30,17 @@ public class UserDaoService {
 		String fullName = obj.getFullname();
 		long phoneNumber = obj.getPhonenumber();
 		String email = obj.getEmail();
-		logger.info("Email used for registration" + email);
+		logger.info("Email used for registration: " + email);
 		String errormessage = "null";
 		int status = 0;
 		boolean flag = true;
 
-		logger.info("Entered into saveUserDetails :{} ", LocalDateTime.now());
+		logger.info("Entered into saveUserDetails : {} ", LocalDateTime.now());
 
-//		if (!isValidUserName(username)) {
-//			errormessage = "UserName should be less than 30 charecters";
-//			flag = false;
-//		}
+		if (!isValidUserName(userName)) {
+			errormessage = "UserName should be less than 30 charecters";
+			flag = false;
+		}
 
 		if (!isValidPassword(password)) {
 			errormessage = "Password must contain 4 digits and 2 special charecters";
@@ -59,10 +60,9 @@ public class UserDaoService {
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		String encryptedPassword = passwordEncoder.encode(password);
 
-		if (!(userName==null))
+		if (flag)
 			status = userRepository.insertUserDetails(userName, encryptedPassword, fullName, phoneNumber, email);
-		else
-			status = userRepository.insertUserDetails("gfzdh", encryptedPassword, fullName, phoneNumber, email);
+	
 		User registrationResponse = new User();
 
 		if (status == 1) {
@@ -84,8 +84,24 @@ public class UserDaoService {
 	}
 
 	public boolean isValidPassword(String password) {
+		// Check for at least 4 digits
+		  Pattern digitPattern = Pattern.compile("\\d");
+	        Matcher digitMatcher = digitPattern.matcher(password);
+	        int digitCount = 0;
+	        while (digitMatcher.find()) {
+	            digitCount++;
+	        }
 
-		return true;
+	        // Check for at least 2 special characters
+	        Pattern specialCharPattern = Pattern.compile("[!@#$%^&*(),.?\":{}|<>]");
+	        Matcher specialCharMatcher = specialCharPattern.matcher(password);
+	        int specialCharCount = 0;
+	        while (specialCharMatcher.find()) {
+	            specialCharCount++;
+	        }
+
+	        // Adjust the counts based on your specific rules
+	        return digitCount >= 4 && specialCharCount >= 2;
 	}
 
 	public static boolean isValidPhoneNumber(long phoneNumber) {
@@ -94,11 +110,9 @@ public class UserDaoService {
 	}
 
 	public static boolean isValidUserName(String userName) {
-		 if (userName != null && userName.length() > 0) {
-		return userName.length() <= 30;
-		 }
-		  throw new IllegalArgumentException("Invalid userName: " + userName);
-		
+
+		return userName.length() <= 30 && userName != null && userName.length() > 0;
+
 	}
 
 	public static boolean isValidEmailFormat(String email) {

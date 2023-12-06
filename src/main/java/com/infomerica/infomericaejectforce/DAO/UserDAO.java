@@ -15,11 +15,11 @@ public class UserDAO {
     @Column(name = "USER_ID")
     private Long userId;
 	@Column(name = "USERNAME")
-	private String userName;
+	private String username;
 	@Column(name = "PASSWORD")
 	private String password;
 	@Column(name = "FULLNAME")
-    private String fullName;
+    private String fullname;
 	@Column(name = "PHONENUMBER")
 	private long phonenumber;
 	@Column(name = "EMAIL")
@@ -28,22 +28,22 @@ public class UserDAO {
 	public UserDAO() {
 		super();
 	}
-	public UserDAO( String username,String password, String fullName, long phonenumber, String email) {
+	public UserDAO( String username,String password, String fullname, long phonenumber, String email) {
 		super();
-		this.userName = username;
+		this.username = username;
 		this.password = password;
-		this.fullName = fullName;
+		this.fullname = fullname;
 		this.phonenumber = phonenumber;
 		this.email = email;
 	}
 	public String getUsername() {
-		return userName;
+		return username;
 	}
 	public String getPassword() {
 		return password;
 	}
 	public String getFullname() {
-		return fullName;
+		return fullname;
 	}
 	public long getPhonenumber() {
 		return phonenumber;
@@ -52,13 +52,13 @@ public class UserDAO {
 		return email;
 	}
 	public void setUsername(String username) {
-		this.userName = username;
+		this.username = username;
 	}
 	public void setPassword(String password) {
 		this.password = password;
 	}
 	public void setFullname(String fullname) {
-		this.fullName = fullname;
+		this.fullname = fullname;
 	}
 	public void setPhonenumber(long phonenumber) {
 		this.phonenumber = phonenumber;
@@ -68,7 +68,7 @@ public class UserDAO {
 	}
 	@Override
 	public String toString() {
-		return "UserDAO [username=" + userName + ", password=" + password + ", fullname=" + fullName
+		return "UserDAO [username=" + username + ", password=" + password + ", fullname=" + fullname
 				+ ", phonenumber=" + phonenumber + ", email=" + email + "]";
 	}
 
