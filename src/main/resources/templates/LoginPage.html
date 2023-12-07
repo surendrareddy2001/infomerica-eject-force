@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600' rel='stylesheet' type='text/css'>
+  <!-- <link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet"> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    body,
+    div,
+    dl,
+    dt,
+    dd,
+    ul,
+    ol,
+    li,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    pre,
+    form,
+    fieldset,
+    input,
+    textarea,
+    p,
+    blockquote,
+    th,
+    td {
+      padding: 0;
+      margin: 0;
+    }
+
+    fieldset,
+    img {
+      border: 0
+    }
+
+    ol,
+    ul,
+    li {
+      list-style: none
+    }
+
+    :focus {
+      outline: none
+    }
+
+    body,
+    input,
+    textarea,
+    select {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 16px;
+      color: #4c4c4c;
+    }
+
+    p {
+      font-size: 12px;
+      width: 150px;
+      display: inline-block;
+      margin-left: 18px;
+    }
+
+    h1 {
+      font-size: 32px;
+      font-weight: 300;
+      color: #4c4c4c;
+      text-align: center;
+      padding-top: 10px;
+      margin-bottom: 10px;
+    }
+
+    html {
+      background-color: #ffffff;
+    }
+
+    .testbox {
+      margin: 20px auto;
+      width: 343px;
+      height: 355px;
+      -webkit-border-radius: 8px/7px;
+      -moz-border-radius: 8px/7px;
+      border-radius: 8px/7px;
+      background-color: #ebebeb;
+      -webkit-box-shadow: 1px 2px 5px rgba(0, 0, 0, .31);
+      -moz-box-shadow: 1px 2px 5px rgba(0, 0, 0, .31);
+      box-shadow: 1px 2px 5px rgba(0, 0, 0, .31);
+      border: solid 1px #cbc9c9;
+      position: relative;
+      / animation: float 10s infinite;  /
+    }
+
+    input[type=radio] {
+      visibility: hidden;
+    }
+
+    form {
+      margin: 0 30px;
+    }
+
+    label.radio {
+      cursor: pointer;
+      text-indent: 35px;
+      overflow: visible;
+      display: inline-block;
+      position: relative;
+      margin-bottom: 15px;
+    }
+
+    label.radio:before {
+      background: #49759C;
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 0;
+      width: 20px;
+      height: 20px;
+      border-radius: 100%;
+    }
+
+    label.radio:after {
+      opacity: 0;
+      content: '';
+      position: absolute;
+      width: 0.5em;
+      height: 0.25em;
+      background: transparent;
+      top: 7.5px;
+      left: 4.5px;
+      border: 3px solid #ffffff;
+      border-top: none;
+      border-right: none;
+      -webkit-transform: rotate(-45deg);
+      -moz-transform: rotate(-45deg);
+      -o-transform: rotate(-45deg);
+      -ms-transform: rotate(-45deg);
+      transform: rotate(-45deg);
+    }
+
+    input[type=radio]:checked+label:after {
+      opacity: 1;
+    }
+
+    hr {
+      color: #a9a9a9;
+      opacity: 0.3;
+    }
+
+    input[type=text],
+    input[type=button],
+    input[type=password]{
+      width: 200px;
+      height: 39px;
+      -webkit-border-radius: 0px 4px 4px 0px/5px 5px 4px 4px;
+      -moz-border-radius: 0px 4px 4px 0px/0px 0px 4px 4px;
+      border-radius: 0px 4px 4px 0px/5px 5px 4px 4px;
+      background-color: #fff;
+      -webkit-box-shadow: 1px 2px 5px rgba(0, 0, 0, .09);
+      -moz-box-shadow: 1px 2px 5px rgba(0, 0, 0, .09);
+      box-shadow: 1px 2px 5px rgba(0, 0, 0, .09);
+      border: solid 1px #cbc9c9;
+      margin-left: -5px;
+      margin-top: 13px;
+      padding-left: 10px;
+      transition: width 0.4s ease-in-out;
+    }
+
+    /* input[type=password] {
+      margin-bottom: 25px;
+    } */
+
+    /* input[type=text]:focus,
+    input[type=password]:focus,
+    input[type=fullName]:focus, */
+      
+    
+
+    #icon {
+      display: inline-block;
+      width: 30px;
+      background-color: #49759C;
+      padding: 8px 0px 8px 15px;
+      margin-left: 15px;
+      -webkit-border-radius: 4px 0px 0px 4px;
+      -moz-border-radius: 4px 0px 0px 4px;
+      border-radius: 4px 0px 0px 4px;
+      color: white;
+      -webkit-box-shadow: 1px 2px 5px rgba(0, 0, 0, .09);
+      -moz-box-shadow: 1px 2px 5px rgba(0, 0, 0, .09);
+      box-shadow: 1px 2px 5px rgba(0, 0, 0, .09);
+      border: solid 0px #cbc9c9;
+    }
+
+    .gender {
+      margin-left: 30px;
+      margin-bottom: 30px;
+    }
+
+    .accounttype {
+      margin-left: 8px;
+      margin-top: 20px;
+    }
+
+    a.button {
+      font-size: 14px;
+      font-weight: 600;
+      color: white;
+      padding: 6px 25px 0px 20px;
+      margin: 10px 8px 20px 0px;
+      display: inline-block;
+      float: left; 
+      text-decoration: none;
+      width: 50px;
+      height: 27px;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      border-radius: 5px;
+      background-color: #49759C;
+      -webkit-box-shadow: 0 3px rgba(58, 87, 175, .75);
+      -moz-box-shadow: 0 3px rgba(58, 87, 175, .75);
+      box-shadow: 0 3px rgba(58, 87, 175, .75);
+      transition: all 0.1s linear 0s;
+      top: 0px;
+      position: relative;
+    }
+
+    a.button:hover {
+      top: 3px;
+      background-color: #2e458b;
+      -webkit-box-shadow: none;
+      -moz-box-shadow: none;
+      box-shadow: none;
+    }
+    .p1 .l{
+      margin-top: 20px;
+      text-decoration: none;
+      font-size: large;
+      font-weight: bold;
+      
+    }
+    .p1 .l:hover{
+      text-decoration-line: underline;
+    }
+    .p1{
+      font-size: large;
+      font-weight: bold;
+    }
+    .srm{
+      float: left;
+    }
+    .login{
+        margin-left: 15%;
+        margin-top: 10%;
+        border-radius: 10px;
+        height: 35px;
+        width: 75px;
+        background-color: #49759C;
+        color: white;
+    }
+    .signUp{
+        margin-left: 10%;
+        border-radius: 10px;
+        height: 35px;
+        width: 75px;
+        background-color: #49759C;
+        color: white;
+    }
+    .signUpWithGoogle{
+        margin-left: 23%; 
+        border: 10px;
+        height: 35px;
+        background-color: #2e458b;
+    }
+    #SignUpGoogle{
+        background: white ;
+        color: mediumblue ;
+        
+    }
+   
+
+    @keyframes float {
+      0% {
+        box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.6);
+        transform: translatey(0px);
+      }
+
+      50% {
+        box-shadow: 0 25px 15px 0px rgba(0, 0, 0, 0.2);
+        transform: translatey(-20px);
+      }
+
+      100% {
+        box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.6);
+        transform: translatey(0px);
+      }
+    }
+   
+    
+    .signUpButton {
+        font-size: 14px;
+        font-weight: 550;
+        color: white;
+        padding: 6px 10px 0px 10px;
+        margin: 2px 7px 20px 29px;
+        display: inline-block;
+        text-decoration: none;
+        width: 50px;
+        height: 26px;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+        background-color: #49759C;
+        border: 1px solid #000000; /* Black border */
+        -webkit-box-shadow: 0 3px rgba(58, 87, 175, .75);
+        -moz-box-shadow: 0 3px rgba(58, 87, 175, .75);
+        box-shadow: 0 3px rgba(58, 87, 175, .75);
+        transition: all 0.1s linear 0s;
+        top: 0px;
+        position: relative;
+    }
+
+    .signUpButton:hover {
+        top: 3px;
+        background-color: #2e458b;
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+    }
+
+
+
+  </style>
+</head>
+
+<body>
+  <br>
+  <br><br><br><br>
+  <img src="https://infomericainc.com/Content/images/logo.png" alt="Your Image Alt Text" style="position: fixed; top: 10px; right: 10px; width: 199px; height: 100px; z-index: 999;">  <div class="testbox">
+    <h1>Login User</h1>
+
+   <form id="loginform" action="/login" method="get">
+
+
+      <!-- ... (Your existing form elements) ... -->
+
+      <label id="icon" for="email"><i class="fa fa-envelope icon"></i></label>
+      <input type="text" name="email" id="email" placeholder="Email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" title="Enter a valid email address">
+      <div class="validation-message" id="emailValidationMessage"></div>
+
+    
+      <label id="icon" for="password"><i class="fa fa-key icon"></i></label>
+      <input type="password" name="password" id="password" placeholder="Password" pattern="^(?=.*\d)(?=.*[!@#$%^&*])[0-9a-zA-Z!@#$%^&*]{4,}$" title="Enter a valid password" required>
+      <div class="validation-message" id="passwordValidationMessage"></div>
+
+    <input type="submit" value="Login" class="login">
+  
+   <!-- <input type="submit" value="SignUp" class="signUp"> <br><br> -->
+   <a href="http://localhost:8080/registeration" class="signUpButton">SignUp</a>
+
+    <!-- <label id="icon" for="SignUpGoogle"><i class="fa fa-google icon"></i></label>
+    <a href="https://www.google.com/"><input  name="SignUpGoogle" value="" id="SignUpGoogle"></a> -->
+    <br>
+    <style>
+      .fa-google {
+        color: white;
+      }
+    </style>
+    
+    <style>
+      .icon-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-right: 40px;
+      }
+      .fa-google {
+        color: white;
+      }
+    </style>
+    
+    <div class="icon-container">
+      <label id="icon" for="SignUpGoogle">
+        <a href="https://www.google.com/">
+          <i class="fa fa-google icon"></i>
+        </a>
+      </label>
+    </div>
+    <input type="submit" name="SignUpGoogle" value="" id="SignUpGoogle" style="display: none;">
+    
+    
+    
+   
+    <!-- <button type="submit" class="signUpWithGoogle">Sign Up With Google</button><br><br> -->
+
+    <!-- <p class="p1"> Sign Up With Google<a href="" class="l">Sign Up</a></p> -->
+  </div>
+
+  <script>
+    function validateForm() {
+      var form = document.getElementById("registrationForm");
+      var email = form.elements["email"].value;
+      var name = form.elements["userName"].value;
+      var telephone = form.elements["telephone"].value;
+      var password = form.elements["password"].value;
+      var fullName = form.elements["fullName"].value;
+
+      if (!email.match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/)) {
+        displayValidationMessage("emailValidationMessage", "Please enter a valid email address");
+        return;
+      }
+
+      if (!name.match(/^[a-zA-Z][a-zA-Z0-9]*$/)) {
+        displayValidationMessage("nameValidationMessage", "Please enter a valid user name");
+        return;
+      }
+
+      if (!telephone.match(/[0-9]{10}/)) {
+        displayValidationMessage("telephoneValidationMessage", "Please enter a valid 10-digit phone number");
+        return;
+      }
+
+      if (!password.match(/^(?=.*\d)(?=.*[!@#$%^&*])[0-9a-zA-Z!@#$%^&*]{4,}$/)) {
+        displayValidationMessage("passwordValidationMessage", "Please enter a valid password");
+        return;
+      }
+
+      if (!fullName.trim()) {
+        displayValidationMessage("fullNameValidationMessage", "Please enter your full name");
+        return;
+      }
+
+      // Clear validation messages if all fields are filled
+      clearValidationMessages();
+
+      // Perform additional validations if needed
+
+      // If all validations pass, show success message
+      alert("Form submitted successfully!");
+    }
+
+    function displayValidationMessage(elementId, message) {
+      var element = document.getElementById(elementId);
+      element.innerHTML = message;
+    }
+
+    function clearValidationMessages() {
+      var elements = document.getElementsByClassName("validation-message");
+      for (var i = 0; i < elements.length; i++) {
+        elements[i].innerHTML = "";
+      }
+    }
+  </script>
+</body>
+</html>
