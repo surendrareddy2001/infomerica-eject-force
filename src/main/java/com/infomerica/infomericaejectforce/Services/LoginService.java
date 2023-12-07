@@ -27,7 +27,7 @@ public class LoginService {
         this.loginRepository = loginRepository;
     }
 
-    public boolean validatePassword(String username, String password) {
+    public boolean validatePassword(String email, String password) {
         List<UserDAO> users = loginRepository.findAllUsers();
         logger.info("data fetched from database");
         return users.stream()

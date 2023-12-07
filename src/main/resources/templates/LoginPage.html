@@ -82,7 +82,7 @@
     .testbox {
       margin: 20px auto;
       width: 343px;
-      height: 550px;
+      height: 355px;
       -webkit-border-radius: 8px/7px;
       -moz-border-radius: 8px/7px;
       border-radius: 8px/7px;
@@ -92,7 +92,7 @@
       box-shadow: 1px 2px 5px rgba(0, 0, 0, .31);
       border: solid 1px #cbc9c9;
       position: relative;
-
+      / animation: float 10s infinite;  /
     }
 
     input[type=radio] {
@@ -152,6 +152,7 @@
     }
 
     input[type=text],
+    input[type=button],
     input[type=password]{
       width: 200px;
       height: 39px;
@@ -247,11 +248,12 @@
     }
     .p1{
       font-size: large;
+      font-weight: bold;
     }
     .srm{
       float: left;
-    }      
-    .register {
+    }
+    .login{
         margin-left: 15%;
         margin-top: 10%;
         border-radius: 10px;
@@ -259,6 +261,25 @@
         width: 75px;
         background-color: #49759C;
         color: white;
+    }
+    .signUp{
+        margin-left: 10%;
+        border-radius: 10px;
+        height: 35px;
+        width: 75px;
+        background-color: #49759C;
+        color: white;
+    }
+    .signUpWithGoogle{
+        margin-left: 23%; 
+        border: 10px;
+        height: 35px;
+        background-color: #2e458b;
+    }
+    #SignUpGoogle{
+        background: white ;
+        color: mediumblue ;
+        
     }
    
 
@@ -278,14 +299,51 @@
         transform: translatey(0px);
       }
     }
+   
+    
+    .signUpButton {
+        font-size: 14px;
+        font-weight: 550;
+        color: white;
+        padding: 6px 10px 0px 10px;
+        margin: 2px 7px 20px 29px;
+        display: inline-block;
+        text-decoration: none;
+        width: 50px;
+        height: 26px;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+        background-color: #49759C;
+        border: 1px solid #000000; /* Black border */
+        -webkit-box-shadow: 0 3px rgba(58, 87, 175, .75);
+        -moz-box-shadow: 0 3px rgba(58, 87, 175, .75);
+        box-shadow: 0 3px rgba(58, 87, 175, .75);
+        transition: all 0.1s linear 0s;
+        top: 0px;
+        position: relative;
+    }
+
+    .signUpButton:hover {
+        top: 3px;
+        background-color: #2e458b;
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+    }
+
+
+
   </style>
 </head>
 
 <body>
-  <div class="testbox">
-    <h1>Registration</h1>
+  <br>
+  <br><br><br><br>
+  <img src="https://infomericainc.com/Content/images/logo.png" alt="Your Image Alt Text" style="position: fixed; top: 10px; right: 10px; width: 199px; height: 100px; z-index: 999;">  <div class="testbox">
+    <h1>Login User</h1>
 
-   <form id="registrationForm" action="/register" method="get">
+   <form id="loginform" action="/login" method="get">
 
 
       <!-- ... (Your existing form elements) ... -->
@@ -294,44 +352,62 @@
       <input type="text" name="email" id="email" placeholder="Email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" title="Enter a valid email address">
       <div class="validation-message" id="emailValidationMessage"></div>
 
-      <label id="icon" for="username"><i class="fa fa-user icon"></i></label>
-     <input type="text" name="username" id="username" placeholder="User Name" >
-
-      <div class="validation-message" id="nameValidationMessage"></div>
-
-      <label id="icon" for="telephone"><i class="fa fa-phone"></i></label>
-      <input type="text" name="phonenumber" id="telephone" placeholder="Phone Number" pattern="[0-9]{10}" title="Enter a valid 10-digit phone number">
-      <div class="validation-message" id="telephoneValidationMessage"></div>
-
+    
       <label id="icon" for="password"><i class="fa fa-key icon"></i></label>
       <input type="password" name="password" id="password" placeholder="Password" pattern="^(?=.*\d)(?=.*[!@#$%^&*])[0-9a-zA-Z!@#$%^&*]{4,}$" title="Enter a valid password" required>
       <div class="validation-message" id="passwordValidationMessage"></div>
 
-      <label id="icon" for="fullname"><i class="fa fa-user icon"></i></label>
-      <input type="text" name="fullname" id="fullname" placeholder="Full Name" required>
-      <div class="validation-message" id="fullNameValidationMessage"></div>
-
-
-      <button type="submit" class="register" onclick="validateForm()">Register</button>
-      <form action="http://localhost:8080/infomerica/" method="get">
-        
-
-        <button type="button" class="register"><a href="http://localhost:8080/" style="color: white;">Login</a></button>
-    </form>
-
-   <!-- <p class="p1"> Click Here <a href="http://localhost:8080/infomerica/" class="l">login</a></p> -->
-   <h5 class="srm">By clicking Register, you agree to our <a href="">terms and conditions</a></h5>
+    <input type="submit" value="Login" class="login">
   
+   <!-- <input type="submit" value="SignUp" class="signUp"> <br><br> -->
+   <a href="http://localhost:8080/registeration" class="signUpButton">SignUp</a>
+
+    <!-- <label id="icon" for="SignUpGoogle"><i class="fa fa-google icon"></i></label>
+    <a href="https://www.google.com/"><input  name="SignUpGoogle" value="" id="SignUpGoogle"></a> -->
+    <br>
+    <style>
+      .fa-google {
+        color: white;
+      }
+    </style>
+    
+    <style>
+      .icon-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-right: 40px;
+      }
+      .fa-google {
+        color: white;
+      }
+    </style>
+    
+    <div class="icon-container">
+      <label id="icon" for="SignUpGoogle">
+        <a href="https://www.google.com/">
+          <i class="fa fa-google icon"></i>
+        </a>
+      </label>
+    </div>
+    <input type="submit" name="SignUpGoogle" value="" id="SignUpGoogle" style="display: none;">
+    
+    
+    
+   
+    <!-- <button type="submit" class="signUpWithGoogle">Sign Up With Google</button><br><br> -->
+
+    <!-- <p class="p1"> Sign Up With Google<a href="" class="l">Sign Up</a></p> -->
   </div>
 
   <script>
     function validateForm() {
       var form = document.getElementById("registrationForm");
       var email = form.elements["email"].value;
-      var name = form.elements["username"].value;
+      var name = form.elements["userName"].value;
       var telephone = form.elements["telephone"].value;
       var password = form.elements["password"].value;
-      var fullName = form.elements["fullname"].value;
+      var fullName = form.elements["fullName"].value;
 
       if (!email.match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/)) {
         displayValidationMessage("emailValidationMessage", "Please enter a valid email address");
