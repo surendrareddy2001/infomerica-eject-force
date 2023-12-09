@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Employee Details</title>
+	<style>
+		body {
+			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+			margin: 20px;
+			background-color: #f4f4f4;
+		}
+
+		#employeeCardsContainer {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-around;
+		}
+
+		.card {
+			border: 1px solid #ddd;
+			border-radius: 8px;
+			padding: 16px;
+			margin: 16px;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+			width: 300px;
+			background-color: #add8e6;
+			transition: transform 0.3s;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+
+		.card:hover {
+			transform: scale(1.05);
+		}
+
+		h2 {
+			color: #333;
+			font-size: 1.5em;
+			margin-bottom: 10px;
+		}
+
+		p {
+			margin: 8px 0;
+			color: #333;
+		}
+
+		form {
+			margin-top: 20px;
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+			align-items: center;
+		}
+
+		label {
+			font-weight: bold;
+			margin-right: 10px;
+		}
+
+		input[type="number"] {
+			padding: 8px;
+			margin-right: 10px;
+		}
+
+		button,
+		input[type="submit"] {
+			padding: 10px;
+			background-color: #007bff;
+			color: #fff;
+			border: none;
+			border-radius: 41px;
+			cursor: pointer;
+			transition: background-color 0.3s;
+		}
+
+		button:hover,
+		input[type="submit"]:hover {
+			background-color: #0056b3;
+		}
+	</style>
+</head>
+
+<body>
+
+	<div id="employeeCardsContainer"></div>
+
+	   <script th:inline="javascript">
+        /*<![CDATA[*/
+
+        // Retrieve employee data from the Thymeleaf model
+        var employees = /*[[${employeeData}]]*/[];
+
+        // Function to create a card for each employee
+        function createEmployeeCard(employee) {
+            var card = document.createElement("div");
+            card.classList.add("card");
+
+            var title = document.createElement("h2");
+            title.textContent = employee.empname; // Change to match your actual attribute names
+            card.appendChild(title);
+
+            var details = document.createElement("p");
+            details.innerHTML = "<strong>Employee ID:</strong> " + employee.empid + "<br>" +
+                "<strong>Phone Number:</strong> " + employee.phnno + "<br>" +
+                "<strong>Date of Joining:</strong> " + employee.dateofjoining + "<br>" +
+                "<strong>Date of Releaving:</strong> " + employee.dateofrelieving + "<br>" +
+                "<strong>Technology:</strong> " + employee.technology + "<br>" +
+                "<strong>Experience:</strong> " + employee.experience + " years<br>" +
+                "<strong>Certifications:</strong> " + employee.certifications + "<br>" +
+                "<strong>Current Company:</strong> " + employee.currentcompany + "<br>" +
+                "<strong>Previous Company:</strong> " + employee.previouscompany + "<br>" +
+                "<strong>CTC:</strong> " + employee.ctc + "<br>" +
+                "<strong>Education:</strong> " + employee.qualification;
+            card.appendChild(details);
+
+            document.getElementById("employeeCardsContainer").appendChild(card);
+        }
+
+        // Display employee cards
+        employees.forEach(createEmployeeCard);
+
+        /*]]>*/
+    </script>
+
+	<form action="/empbyid" method="get">
+		<label for="employeeId">Employee ID:</label>
+		<input type="number" id="employeeId" name="employeeId" required>
+		<button type="submit">Get Employee by ID</button>
+	</form>
+
+	<form action="/all" method="get">
+		<input type="submit" value="View All Employees">
+	</form>
+
+</body>
+
+</html>

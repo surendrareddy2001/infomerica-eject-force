@@ -35,7 +35,7 @@ public class LoginController {
 		logger.info("Entered into login page");
 		if (loginService.validatePassword(email, password)) {
 			logger.info("login successful");
-			return "welcomepage.html";
+			return "employee";
 		} else {
 			logger.info("login failed");
 			return "errorpage";
