@@ -1,61 +1,85 @@
 package com.infomerica.infomericaejectforce.Controller;
 
+import java.time.LocalDateTime;
+
 import javax.websocket.server.PathParam;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 
+import com.infomerica.infomericaejectforce.DAO.User;
 import com.infomerica.infomericaejectforce.Services.LoginService;
 
+/**
+ * Login and Registration Controller
+ * 
+ */
 @Controller
 public class LoginController {
 
+	private static Logger logger = LoggerFactory.getLogger(LoginController.class);
+	
 	@Autowired
-	LoginService loginService;
-	static Logger logger = LoggerFactory.getLogger(UserController.class);
+	private LoginService loginService;
 
+	
+	/**
+	 * @return
+	 */
+	@GetMapping("/registeration")
+	public String getUserRegistration() {
+		return "registration";
+	}
+	
+	/**
+	 * @param email
+	 * @param username
+	 * @param phonenumber
+	 * @param password
+	 * @param fullname
+	 * @return
+	 */
+	@GetMapping("/register")
+	public String userRegistration(@PathParam(value = "email") String email,@PathParam(value = "username") String username,@PathParam(value = "phonenumber") Long phonenumber,@PathParam(value = "password") String password,@PathParam(value = "fullname") String fullname ) {
+		logger.info("Entered into Usercontroller");
+		
+		User user = new User(username,password,fullname,phonenumber,email);
+		loginService.saveUserDetails(user);
+		logger.info("Exited from Usercontroller :{}",LocalDateTime.now());
+		return "LoginPage";
+		
+	}
+
+	/**
+	 * @return
+	 */
 	@GetMapping("/")
 	public String login() {
 		return "LoginPage";
 
 	}
-
-//	http://localhost:8080/infomerica/login?email=suriboreddy2001%40gmail.com&password=SA2001%40%23%24 
+	
+	/**
+	 * @param email
+	 * @param password
+	 * @return
+	 */
 	@GetMapping("/login")
 	public String login(@PathParam(value = "email") String email, @PathParam(value = "password") String password) {
-		logger.info("Entered into login page");
-		if (loginService.validatePassword(email, password)) {
-			logger.info("login successful");
+		
+		logger.info("Entered into login page:{}", LocalDateTime.now());
+		
+		if (loginService.validatePassword(email, password)) 
+		{
+			logger.info("login successful for : {}",email);
 			return "employee";
 		} else {
-			logger.info("login failed");
+			logger.info("login failed for : {}",email);
 			return "errorpage";
 		}
 	}
-//
-//        @GetMapping("/login/google")
-//        public String googleLogin() {
-//            return "redirect:/oauth2/authorization/google";
-//        }
-//
-//        @GetMapping("/login/google/callback")
-//        public String googleCallback(@AuthenticationPrincipal OAuth2User principal) {
-//           
-//        	UserDAO userDetails = loginService.processOAuthUser(principal);
-//
-//           
-//            loginService.save(userDetails);
-//
-//            return "redirect:/welcome"; 
-//        }
 
 }

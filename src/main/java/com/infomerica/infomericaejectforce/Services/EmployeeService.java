@@ -14,20 +14,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-
-import com.infomerica.infomericaejectforce.DAO.EmployeeDAO;
+import com.infomerica.infomericaejectforce.DAO.Employee;
 import com.infomerica.infomericaejectforce.Repository.EmployeeRepository;
 
-
+/**
+ * EmployeeService class
+ */
 @Service
 public class EmployeeService {
 
 	@Autowired
 	EmployeeRepository employeeRepository;
 
+	/**
+	 * @param file 
+	 * @return Save the XL data into DB
+	 */
 	public String saveEmployeeDetails(MultipartFile file) {
 
-		List<EmployeeDAO> empList = new ArrayList<>();
+		List<Employee> empList = new ArrayList<>();
 
 		try {
 			XSSFWorkbook workbook = new XSSFWorkbook(file.getInputStream());
@@ -40,7 +45,7 @@ public class EmployeeService {
 				}
 
 				Iterator<Cell> it = row.iterator();
-				EmployeeDAO employeeDAO = new EmployeeDAO();
+				Employee employeeDAO = new Employee();
 				while (it.hasNext()) {
 
 					employeeDAO.setEmpid((int) it.next().getNumericCellValue());
@@ -63,16 +68,24 @@ public class EmployeeService {
 			e.getStackTrace();
 		}
 		employeeRepository.saveAll(empList);
-		return "done";
+		return "Sucessesfully Uploaded";
 
 	}
 
-	 public  List<EmployeeDAO> getEmployeeById(int employeeId) {
-	    	List<EmployeeDAO> list = Arrays.asList(employeeRepository.findById(employeeId).orElse(null));
-	        return list ;
-	    }
-	 public List<EmployeeDAO> getAllEmployees() {
-	        return (List<EmployeeDAO>) employeeRepository.findAll();
-	    }
+	/**
+	 * @param employeeId
+	 * @return Single EMployee Data By Employee Id
+	 */
+	public List<Employee> getEmployeeById(int employeeId) {
+		List<Employee> list = Arrays.asList(employeeRepository.findById(employeeId).orElse(null));
+		return list;
+	}
+
+	/**
+	 * @return all Employees
+	 */
+	public List<Employee> getAllEmployees() {
+		return (List<Employee>) employeeRepository.findAll();
+	}
 
 }

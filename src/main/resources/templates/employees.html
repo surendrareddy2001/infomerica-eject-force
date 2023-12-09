@@ -1,89 +1,102 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-
+<html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Employee Details</title>
-	<style>
-		body {
-			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-			margin: 20px;
-			background-color: #f4f4f4;
-		}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color:  #ffffee;
+            color: #333;
+            background-image: url('https://www.tooplate.com/templates/2133_moso_interior/images/shop/mock-up-poster-modern-dining-room-interior-design-with-white-empty-wall.jpg');
+            background-size: cover; /* Cover both width and height */
+            background-position: top; /* Adjusted to align to the top of the viewport */
+            background-repeat: no-repeat; /* Do not repeat the image */
+        }
+        nav {
+            background-color: #444;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
 
-		#employeeCardsContainer {
-			display: flex;
-			flex-wrap: wrap;
-			justify-content: space-around;
-		}
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px;
+            margin: 0 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
 
-		.card {
-			border: 1px solid #ddd;
-			border-radius: 8px;
-			padding: 16px;
-			margin: 16px;
-			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-			width: 300px;
-			background-color: #add8e6;
-			transition: transform 0.3s;
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-		}
+        nav a:hover {
+            background-color: #555;
+        }
 
-		.card:hover {
-			transform: scale(1.05);
-		}
+        .search-container {
+            display: flex;
+            align-items: center;
+            margin-right: 10px; /* Added margin to the right */
+        }
 
-		h2 {
-			color: #333;
-			font-size: 1.5em;
-			margin-bottom: 10px;
-		}
+        input[type="number"] {
+            padding: 10px;
+            margin: 5px 0;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
 
-		p {
-			margin: 8px 0;
-			color: #333;
-		}
+        button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+			margin-left:10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
 
-		form {
-			margin-top: 20px;
-			display: flex;
-			flex-wrap: wrap;
-			justify-content: center;
-			align-items: center;
-		}
+        button:hover {
+            background-color: #45a049;
+        }
 
-		label {
-			font-weight: bold;
-			margin-right: 10px;
-		}
+        /* Adjusted margin between buttons */
+        button + button {
+            margin-left: 30px;
+        }
 
-		input[type="number"] {
-			padding: 8px;
-			margin-right: 10px;
-		}
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                align-items: stretch;
+            }
 
-		button,
-		input[type="submit"] {
-			padding: 10px;
-			background-color: #007bff;
-			color: #fff;
-			border: none;
-			border-radius: 41px;
-			cursor: pointer;
-			transition: background-color 0.3s;
-		}
-
-		button:hover,
-		input[type="submit"]:hover {
-			background-color: #0056b3;
-		}
-	</style>
+            .search-container {
+                margin-top: 10px;
+                margin-right: 5px; /* Remove right margin on smaller screens */
+            }
+        }
+    </style>
 </head>
-
 <body>
+
+<nav>
+    <div class="menu">
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Services</a>
+        <a href="#">Contact</a>
+        <a href="#">Blog</a>
+    </div>
 
 	<div id="employeeCardsContainer"></div>
 
@@ -124,17 +137,19 @@
 
         /*]]>*/
     </script>
+    <div class="search-container">
+        <form action="/empbyid">
+            <input type="number" id="employeeId" name="employeeId" placeholder="Enter Employee ID" required>
+            <button type="submit">Search</button>
+        </form>
+        <form action="/all" id="check">
+            <button type="submit">Get All Employees</button>
+        </form>
+    </div>
+</nav>
 
-	<form action="/empbyid" method="get">
-		<label for="employeeId">Employee ID:</label>
-		<input type="number" id="employeeId" name="employeeId" required>
-		<button type="submit">Get Employee by ID</button>
-	</form>
+<!-- Main Content -->
 
-	<form action="/all" method="get">
-		<input type="submit" value="View All Employees">
-	</form>
 
 </body>
-
 </html>

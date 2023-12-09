@@ -7,9 +7,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * USER_INFO Object
+ */
 @Entity
 @Table(name = "USER_INFO")
-public class UserDAO {
+public class User {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "USER_ID")
@@ -25,10 +28,11 @@ public class UserDAO {
 	@Column(name = "EMAIL")
 	private String email;
 	
-	public UserDAO() {
+	public User() {
 		super();
 	}
-	public UserDAO( String username,String password, String fullname, long phonenumber, String email) {
+	
+	public User(String username, String password, String fullname, long phonenumber, String email) {
 		super();
 		this.username = username;
 		this.password = password;
@@ -36,36 +40,55 @@ public class UserDAO {
 		this.phonenumber = phonenumber;
 		this.email = email;
 	}
+
+	public Long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
+
 	public String getUsername() {
 		return username;
 	}
-	public String getPassword() {
-		return password;
-	}
-	public String getFullname() {
-		return fullname;
-	}
-	public long getPhonenumber() {
-		return phonenumber;
-	}
-	public String getEmail() {
-		return email;
-	}
+
 	public void setUsername(String username) {
 		this.username = username;
 	}
+
+	public String getPassword() {
+		return password;
+	}
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+	public String getFullname() {
+		return fullname;
+	}
+
 	public void setFullname(String fullname) {
 		this.fullname = fullname;
 	}
+
+	public long getPhonenumber() {
+		return phonenumber;
+	}
+
 	public void setPhonenumber(long phonenumber) {
 		this.phonenumber = phonenumber;
 	}
+
+	public String getEmail() {
+		return email;
+	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 	@Override
 	public String toString() {
 		return "UserDAO [username=" + username + ", password=" + password + ", fullname=" + fullname
