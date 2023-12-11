@@ -77,7 +77,7 @@ public class LoginService {
 		Response registrationResponse = new Response();
 
 		if (status == 1) {
-			logger.info("User is created by :{}",userName);
+			logger.info("User created by :{}",userName);
 			registrationResponse.setStatus(HttpStatus.CREATED);
 			registrationResponse.setMessage(Contsants.REGISTRATION_SUCESSE);
 			registrationResponse.setErrorcode(errormessage);

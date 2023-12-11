@@ -74,7 +74,7 @@ public class EmployeeController {
 	 */
 	@GetMapping("/allemployee")
 	public String getAllEmployees(Model m) {
-		logger.info("Calling all Employee Page at :{}", LocalDateTime.now());
+		logger.info("Calling all Employees Page at :{}", LocalDateTime.now());
 		List<Employee> employees = employeeService.getAllEmployees();
 		m.addAttribute("employeeData", employees);
 		return "employees";
