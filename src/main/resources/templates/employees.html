@@ -8,13 +8,14 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            background-color:  #ffffee;
+            background-color: #ffffee;
             color: #333;
             background-image: url('https://www.tooplate.com/templates/2133_moso_interior/images/shop/mock-up-poster-modern-dining-room-interior-design-with-white-empty-wall.jpg');
-            background-size: cover; /* Cover both width and height */
-            background-position: top; /* Adjusted to align to the top of the viewport */
-            background-repeat: no-repeat; /* Do not repeat the image */
+            background-size: cover;
+            background-position: top;
+            background-repeat: no-repeat;
         }
+
         nav {
             background-color: #444;
             padding: 10px;
@@ -42,7 +43,7 @@
         .search-container {
             display: flex;
             align-items: center;
-            margin-right: 10px; /* Added margin to the right */
+            margin-right: 10px;
         }
 
         input[type="number"] {
@@ -57,7 +58,7 @@
             padding: 10px;
             background-color: #4CAF50;
             color: white;
-			margin-left:10px;
+            margin-left: 10px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
@@ -68,23 +69,68 @@
             background-color: #45a049;
         }
 
-        /* Adjusted margin between buttons */
+        
         button + button {
             margin-left: 30px;
         }
 
-        /* Responsive styles */
-        @media (max-width: 768px) {
-            nav {
-                flex-direction: column;
-                align-items: stretch;
-            }
-
-            .search-container {
-                margin-top: 10px;
-                margin-right: 5px; /* Remove right margin on smaller screens */
-            }
+       
+        #employeeCardsContainer {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 20px;
         }
+
+        .card {
+            width: calc(20% - 20px);
+            margin: 10px;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-sizing: border-box;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .card h2 {
+            color: #333;
+        }
+
+        .card p {
+            color: #555;
+        }
+
+       
+        .pagination-container {
+            display: flex;
+            justify-content: flex-end; 
+            align-items: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .pagination {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+
+        .pagination li {
+            margin: 0 5px;
+            cursor: pointer;
+        }
+
+        .pagination li.active {
+            font-weight: bold;
+        }
+
+        .pagination-text {
+            margin-right: 10px;
+            color: darkred;
+            font-size: 30px;
+        }
+        
     </style>
 </head>
 <body>
@@ -98,58 +144,101 @@
         <a href="#">Blog</a>
     </div>
 
-	<div id="employeeCardsContainer"></div>
-
-	   <script th:inline="javascript">
-        /*<![CDATA[*/
-
-        // Retrieve employee data from the Thymeleaf model
-        var employees = /*[[${employeeData}]]*/[];
-
-        // Function to create a card for each employee
-        function createEmployeeCard(employee) {
-            var card = document.createElement("div");
-            card.classList.add("card");
-
-            var title = document.createElement("h2");
-            title.textContent = employee.empname; // Change to match your actual attribute names
-            card.appendChild(title);
-
-            var details = document.createElement("p");
-            details.innerHTML = "<strong>Employee ID:</strong> " + employee.empid + "<br>" +
-                "<strong>Phone Number:</strong> " + employee.phnno + "<br>" +
-                "<strong>Date of Joining:</strong> " + employee.dateofjoining + "<br>" +
-                "<strong>Date of Releaving:</strong> " + employee.dateofrelieving + "<br>" +
-                "<strong>Technology:</strong> " + employee.technology + "<br>" +
-                "<strong>Experience:</strong> " + employee.experience + " years<br>" +
-                "<strong>Certifications:</strong> " + employee.certifications + "<br>" +
-                "<strong>Current Company:</strong> " + employee.currentcompany + "<br>" +
-                "<strong>Previous Company:</strong> " + employee.previouscompany + "<br>" +
-                "<strong>CTC:</strong> " + employee.ctc + "<br>" +
-                "<strong>Education:</strong> " + employee.qualification;
-            card.appendChild(details);
-
-            document.getElementById("employeeCardsContainer").appendChild(card);
-        }
-
-        // Display employee cards
-        employees.forEach(createEmployeeCard);
-
-        /*]]>*/
-    </script>
     <div class="search-container">
         <form action="/empbyid">
             <input type="number" id="employeeId" name="employeeId" placeholder="Enter Employee ID" required>
             <button type="submit">Search</button>
         </form>
-        <form action="/all" id="check">
+        <form action="/allemployee" id="check">
             <button type="submit">Get All Employees</button>
         </form>
     </div>
 </nav>
 
-<!-- Main Content -->
+<div id="employeeCardsContainer"></div>
 
+<div class="pagination-container">
+    <span class="pagination-text">Pages</span>
+    <ul class="pagination" id="pagination"></ul>
+</div>
+
+<script th:inline="javascript">
+    /*<![CDATA[*/
+
+    var employees = /*[[${employeeData}]]*/[];
+    var itemsPerPage = 10;
+    var detailsInRow = 5;
+    var currentPage = 1;
+
+    function createEmployeeCard(employee) {
+        var card = document.createElement("div");
+        card.classList.add("card");
+
+        var title = document.createElement("h2");
+        title.textContent = employee.empname;
+        card.appendChild(title);
+
+        var details = document.createElement("p");
+        details.innerHTML = "<strong>Employee ID:</strong> " + employee.empid + "<br>" +
+            "<strong>Phone Number:</strong> " + employee.phnno + "<br>" +
+            "<strong>Date of Joining:</strong> " + employee.dateofjoining + "<br>" +
+            "<strong>Date of Releaving:</strong> " + employee.dateofrelieving + "<br>" +
+            "<strong>Technology:</strong> " + employee.technology + "<br>" +
+            "<strong>Experience:</strong> " + employee.experience + " years<br>" +
+            "<strong>Certifications:</strong> " + employee.certifications + "<br>" +
+            "<strong>Current Company:</strong> " + employee.currentcompany + "<br>" +
+            "<strong>Previous Company:</strong> " + employee.previouscompany + "<br>" +
+            "<strong>CTC:</strong> " + employee.ctc + "<br>" +
+            "<strong>Education:</strong> " + employee.qualification;
+        card.appendChild(details);
+
+        document.getElementById("employeeCardsContainer").appendChild(card);
+    }
+
+    function displayEmployeeDetails(page) {
+        var startIndex = (page - 1) * itemsPerPage;
+        var endIndex = startIndex + itemsPerPage;
+        var pageEmployees = employees.slice(startIndex, endIndex);
+
+        document.getElementById("employeeCardsContainer").innerHTML = "";
+
+        pageEmployees.forEach(createEmployeeCard);
+    }
+
+    function createPaginationControls() {
+        var totalPages = Math.ceil(employees.length / itemsPerPage);
+        var paginationContainer = document.getElementById("pagination");
+
+        for (var i = 1; i <= totalPages; i++) {
+            var li = document.createElement("li");
+            li.textContent = i;
+            li.addEventListener("click", function () {
+                currentPage = parseInt(this.textContent);
+                displayEmployeeDetails(currentPage);
+                updateActivePaginationItem();
+            });
+            paginationContainer.appendChild(li);
+        }
+
+        updateActivePaginationItem();
+    }
+
+    function updateActivePaginationItem() {
+        var paginationItems = document.querySelectorAll(".pagination li");
+        paginationItems.forEach(function (item) {
+            item.classList.remove("active");
+            if (parseInt(item.textContent) === currentPage) {
+                item.classList.add("active");
+            }
+        });
+    }
+
+    // Initial display and pagination controls creation
+    displayEmployeeDetails(currentPage);
+    createPaginationControls();
+
+    /*]]>*/
+</script>
 
 </body>
 </html>

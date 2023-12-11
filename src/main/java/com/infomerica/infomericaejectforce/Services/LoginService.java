@@ -153,7 +153,7 @@ public class LoginService {
 	 * @return validatePassword
 	 */
 	public boolean validatePassword(String email, String password) {
-		List<com.infomerica.infomericaejectforce.DAO.User> users = userRepository.findAllUsers();
+		List<com.infomerica.infomericaejectforce.DAO.User> users = userRepository.findAll();
 		logger.info("data fetched from database at :{}",LocalDateTime.now());
 		return users.stream().anyMatch(user -> passwordEncoder.matches(password, user.getPassword()));
 	}

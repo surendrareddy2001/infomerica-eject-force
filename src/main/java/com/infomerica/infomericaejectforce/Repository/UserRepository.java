@@ -19,8 +19,8 @@ public interface UserRepository extends JpaRepository<User, String> {
 	/**
 	 * @return
 	 */
-	@Query("SELECT u FROM UserDAO u")
-	List<User> findAllUsers();
+//	@Query("SELECT u FROM UserDAO u")
+//	List<User> findAllUsers();
 
 	/**
 	 * @param username

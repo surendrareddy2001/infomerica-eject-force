@@ -33,7 +33,7 @@ public class EmployeeController {
 	 * @return
 	 */
 	@GetMapping("/employee")
-	public String getPage() {
+	public String getHomePage() {
 		logger.info("Calling Employee Page at :{}", LocalDateTime.now());
 		return "employee";
 	}
@@ -43,10 +43,17 @@ public class EmployeeController {
 	 * @return
 	 */
 	@PostMapping("/upload")
-	public String excelToDB(@RequestParam("file") MultipartFile file) {
+	public void excelToDB(@RequestParam("file") MultipartFile file) {
 		logger.info("Calling upload Page at :{}", LocalDateTime.now());
-		employeeService.saveEmployeeDetails(file);
-		return "Exited";
+		try {
+			String response = employeeService.saveEmployeeDetails(file);
+			if (!response.isEmpty() || !response.isBlank())
+				logger.info("upload Page sucessfull");
+			else
+				logger.info("upload Page Failed");
+		} catch (Exception e) {
+
+		}
 	}
 
 	/**
