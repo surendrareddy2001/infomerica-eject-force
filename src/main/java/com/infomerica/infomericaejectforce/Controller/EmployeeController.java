@@ -63,7 +63,7 @@ public class EmployeeController {
 	 */
 	@GetMapping("/empbyid")
 	public String getEmployeeById(@PathParam(value = "employeeId") int employeeId, Model model) {
-		logger.info("Calling Employee By Id Page at :{}", LocalDateTime.now());
+		logger.info("Calling Employees By Id Page at :{}", LocalDateTime.now());
 		model.addAttribute("employeeData", employeeService.getEmployeeById(employeeId));
 		return "employees";
 	}

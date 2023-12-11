@@ -13,9 +13,6 @@ import com.infomerica.infomericaejectforce.DAO.User;
  */
 @Repository
 public interface UserRepository extends JpaRepository<User, String> {
-
-
-
 	/**
 	 * @param username
 	 * @param password
