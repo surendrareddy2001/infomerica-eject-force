@@ -1,7 +1,5 @@
 package com.infomerica.infomericaejectforce.Repository;
 
-import java.util.List;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -19,7 +17,7 @@ public interface UserRepository extends JpaRepository<User, String> {
 	/**
 	 * @return
 	 */
-//	@Query("SELECT u FROM UserDAO u")
+// @Query("SELECT u FROM UserDAO u")
 //	List<User> findAllUsers();
 
 	/**

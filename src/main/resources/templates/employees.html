@@ -1,244 +1,263 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #ffffee;
-            color: #333;
-            background-image: url('https://www.tooplate.com/templates/2133_moso_interior/images/shop/mock-up-poster-modern-dining-room-interior-design-with-white-empty-wall.jpg');
-            background-size: cover;
-            background-position: top;
-            background-repeat: no-repeat;
-        }
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+		body {
+			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+			margin: 0;
+			padding: 0;
+			background-color: #ffffee;
+			color: #333;
+			background-image: url('https://www.tooplate.com/templates/2133_moso_interior/images/shop/mock-up-poster-modern-dining-room-interior-design-with-white-empty-wall.jpg');
+			background-size: cover;
+			background-position: top;
+			background-repeat: no-repeat;
+		}
 
-        nav {
-            background-color: #444;
-            padding: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
+		nav {
+			background-color: #444;
+			padding: 10px;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			position: sticky;
+			top: 0;
+			z-index: 1000;
+		}
 
-        nav a {
-            color: #fff;
-            text-decoration: none;
-            padding: 10px;
-            margin: 0 10px;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-        }
+		nav a {
+			color: #fff;
+			text-decoration: none;
+			padding: 10px;
+			margin: 0 10px;
+			border-radius: 5px;
+			transition: background-color 0.3s ease;
+		}
 
-        nav a:hover {
-            background-color: #555;
-        }
+		nav a:hover {
+			background-color: #555;
+		}
 
-        .search-container {
-            display: flex;
-            align-items: center;
-            margin-right: 10px;
-        }
+		.search-container {
+			display: flex;
+			align-items: center;
+			margin-right: 10px;
+		}
 
-        input[type="number"] {
-            padding: 10px;
-            margin: 5px 0;
-            box-sizing: border-box;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
+		input[type="number"] {
+			padding: 10px;
+			margin: 5px 0;
+			box-sizing: border-box;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+		}
 
-        button {
-            padding: 10px;
-            background-color: #4CAF50;
-            color: white;
-            margin-left: 10px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
+		button {
+			padding: 10px;
+			background-color: #4CAF50;
+			color: white;
+			margin-left: 10px;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+			transition: background-color 0.3s ease;
+		}
 
-        button:hover {
-            background-color: #45a049;
-        }
+		button:hover {
+			background-color: #45a049;
+		}
 
-        
-        button + button {
-            margin-left: 30px;
-        }
+		
+		button+button {
+			margin-left: 30px;
+		}
 
-       
-        #employeeCardsContainer {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            padding: 20px;
-        }
+		
+		#employeeCardsContainer {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-around;
+			padding: 20px;
+		}
 
-        .card {
-            width: calc(20% - 20px);
-            margin: 10px;
-            background-color: rgba(255, 255, 255, 0.8);
-            padding: 20px;
-            border-radius: 10px;
-            box-sizing: border-box;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
+		.card {
+			width: calc(20% - 20px);
+			
+			margin: 10px;
+			background-color: rgba(255, 255, 255, 0.8);
+			
+			padding: 20px;
+			border-radius: 10px;
+			box-sizing: border-box;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+		}
 
-        .card h2 {
-            color: #333;
-        }
+		.card h2 {
+			color: blue;
+			
+			text-decoration: underline;
+			
+		}
 
-        .card p {
-            color: #555;
-        }
+		.card p {
+			color: #555;
+		}
 
-       
-        .pagination-container {
-            display: flex;
-            justify-content: flex-end; 
-            align-items: center;
-            margin-top: 20px;
-            margin-bottom: 20px;
-        }
+		
+		.pagination-container {
+			display: flex;
+			justify-content: flex-end;
+			
+			align-items: center;
+			margin-top: 20px;
+			margin-bottom: 20px;
+		}
 
-        .pagination {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-        }
+		.pagination {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+			display: flex;
+		}
 
-        .pagination li {
-            margin: 0 5px;
-            cursor: pointer;
-        }
+		.pagination li {
+			margin: 0 5px;
+			cursor: pointer;
+		}
 
-        .pagination li.active {
-            font-weight: bold;
-        }
+		.pagination li.active {
+			font-weight: bold;
+		}
 
-        .pagination-text {
-            margin-right: 10px;
-            color: darkred;
-            font-size: 30px;
-        }
-        
-    </style>
+		.pagination-text {
+			margin-right: 5px;
+			
+			color: darkred;
+			font-size: 20px;
+			
+		}
+	</style>
 </head>
+
 <body>
 
-<nav>
-    <div class="menu">
-        <a href="#">Home</a>
-        <a href="#">About</a>
-        <a href="#">Services</a>
-        <a href="#">Contact</a>
-        <a href="#">Blog</a>
-    </div>
+	<nav>
+		<div class="menu">
+			<a href="#">Home</a>
+			<a href="#">About</a>
+			<a href="#">Services</a>
+			<a href="#">Contact</a>
+			<a href="#">Blog</a>
+		</div>
 
-    <div class="search-container">
-        <form action="/empbyid">
-            <input type="number" id="employeeId" name="employeeId" placeholder="Enter Employee ID" required>
-            <button type="submit">Search</button>
-        </form>
-        <form action="/allemployee" id="check">
-            <button type="submit">Get All Employees</button>
-        </form>
-    </div>
-</nav>
+		<div class="search-container">
+			<form action="/empbyid">
+				<input type="number" id="employeeId" name="employeeId" placeholder="Enter Employee ID" required>
+				<button type="submit">Search</button>
+			</form>
+			<form action="/allemployee" id="check">
+				<button type="submit">Get All Employees</button>
+			</form>
+		</div>
+	</nav>
 
-<div id="employeeCardsContainer"></div>
+	<div id="employeeCardsContainer"></div>
 
-<div class="pagination-container">
-    <span class="pagination-text">Pages</span>
-    <ul class="pagination" id="pagination"></ul>
-</div>
+	<div class="pagination-container">
+		<span class="pagination-text">Pages:</span>
+		<ul class="pagination" id="pagination"></ul>
+	</div>
 
-<script th:inline="javascript">
-    /*<![CDATA[*/
+	<script th:inline="javascript">
+		/*<![CDATA[*/
 
-    var employees = /*[[${employeeData}]]*/[];
-    var itemsPerPage = 10;
-    var detailsInRow = 5;
-    var currentPage = 1;
+		var employees = /*[[${employeeData}]]*/[];
+		var itemsPerPage = 10;
+		var detailsInRow = 5;
+		var currentPage = 1;
 
-    function createEmployeeCard(employee) {
-        var card = document.createElement("div");
-        card.classList.add("card");
+		function createEmployeeCard(employee) {
+			var card = document.createElement("div");
+			card.classList.add("card");
 
-        var title = document.createElement("h2");
-        title.textContent = employee.empname;
-        card.appendChild(title);
+			var title = document.createElement("h2");
+			title.style.color = "blue"; // Set blue color dynamically
+			title.style.textDecoration = "underline"; // Set underline dynamically
+			title.textContent = employee.empname;
+			card.appendChild(title);
 
-        var details = document.createElement("p");
-        details.innerHTML = "<strong>Employee ID:</strong> " + employee.empid + "<br>" +
-            "<strong>Phone Number:</strong> " + employee.phnno + "<br>" +
-            "<strong>Date of Joining:</strong> " + employee.dateofjoining + "<br>" +
-            "<strong>Date of Releaving:</strong> " + employee.dateofrelieving + "<br>" +
-            "<strong>Technology:</strong> " + employee.technology + "<br>" +
-            "<strong>Experience:</strong> " + employee.experience + " years<br>" +
-            "<strong>Certifications:</strong> " + employee.certifications + "<br>" +
-            "<strong>Current Company:</strong> " + employee.currentcompany + "<br>" +
-            "<strong>Previous Company:</strong> " + employee.previouscompany + "<br>" +
-            "<strong>CTC:</strong> " + employee.ctc + "<br>" +
-            "<strong>Education:</strong> " + employee.qualification;
-        card.appendChild(details);
+			var details = document.createElement("p");
+			details.innerHTML = "<strong>Employee ID:</strong> " + employee.empid + "<br>" +
+				"<strong>Phone Number:</strong> " + employee.phnno + "<br>" +
+				"<strong>Date of Joining:</strong> " + employee.dateofjoining + "<br>" +
+				"<strong>Date of Releaving:</strong> " + employee.dateofrelieving + "<br>" +
+				"<strong>Technology:</strong> " + employee.technology + "<br>" +
+				"<strong>Experience:</strong> " + employee.experience + " years<br>" +
+				"<strong>Certifications:</strong> " + employee.certifications + "<br>" +
+				"<strong>Current Company:</strong> " + employee.currentcompany + "<br>" +
+				"<strong>Previous Company:</strong> " + employee.previouscompany + "<br>" +
+				"<strong>CTC:</strong> " + employee.ctc + "<br>" +
+				"<strong>Education:</strong> " + employee.qualification;
+			card.appendChild(details);
 
-        document.getElementById("employeeCardsContainer").appendChild(card);
-    }
+			document.getElementById("employeeCardsContainer").appendChild(card);
+		}
 
-    function displayEmployeeDetails(page) {
-        var startIndex = (page - 1) * itemsPerPage;
-        var endIndex = startIndex + itemsPerPage;
-        var pageEmployees = employees.slice(startIndex, endIndex);
+		function displayEmployeeDetails(page) {
+			var startIndex = (page - 1) * itemsPerPage;
+			var endIndex = startIndex + itemsPerPage;
+			var pageEmployees = employees.slice(startIndex, endIndex);
 
-        document.getElementById("employeeCardsContainer").innerHTML = "";
+			document.getElementById("employeeCardsContainer").innerHTML = "";
 
-        pageEmployees.forEach(createEmployeeCard);
-    }
+			pageEmployees.forEach(createEmployeeCard);
+		}
 
-    function createPaginationControls() {
-        var totalPages = Math.ceil(employees.length / itemsPerPage);
-        var paginationContainer = document.getElementById("pagination");
+		function createPaginationControls() {
+			var totalPages = Math.ceil(employees.length / itemsPerPage);
+			var paginationContainer = document.getElementById("pagination");
 
-        for (var i = 1; i <= totalPages; i++) {
-            var li = document.createElement("li");
-            li.textContent = i;
-            li.addEventListener("click", function () {
-                currentPage = parseInt(this.textContent);
-                displayEmployeeDetails(currentPage);
-                updateActivePaginationItem();
-            });
-            paginationContainer.appendChild(li);
-        }
+			for (var i = 1; i <= totalPages; i++) {
+				var li = document.createElement("li");
+				li.textContent = i;
+				li.addEventListener("click", function () {
+					currentPage = parseInt(this.textContent);
+					displayEmployeeDetails(currentPage);
+					updateActivePaginationItem();
+				});
+				paginationContainer.appendChild(li);
 
-        updateActivePaginationItem();
-    }
+				// Add a comma after each page number except the last one
+				if (i < totalPages) {
+					var comma = document.createElement("span");
+					comma.textContent = ",";
+					paginationContainer.appendChild(comma);
+				}
+			}
 
-    function updateActivePaginationItem() {
-        var paginationItems = document.querySelectorAll(".pagination li");
-        paginationItems.forEach(function (item) {
-            item.classList.remove("active");
-            if (parseInt(item.textContent) === currentPage) {
-                item.classList.add("active");
-            }
-        });
-    }
+			updateActivePaginationItem();
+		}
 
-    // Initial display and pagination controls creation
-    displayEmployeeDetails(currentPage);
-    createPaginationControls();
+		function updateActivePaginationItem() {
+			var paginationItems = document.querySelectorAll(".pagination li");
+			paginationItems.forEach(function (item) {
+				item.classList.remove("active");
+				if (parseInt(item.textContent) === currentPage) {
+					item.classList.add("active");
+				}
+			});
+		}
 
-    /*]]>*/
-</script>
+		// Initial display and pagination controls creation
+		displayEmployeeDetails(currentPage);
+		createPaginationControls();
+
+		/*]]>*/
+	</script>
 
 </body>
+
 </html>
